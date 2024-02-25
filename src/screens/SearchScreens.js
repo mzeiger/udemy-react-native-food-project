@@ -16,10 +16,10 @@ const createTwoButtonAlert = (e) =>
       text: "",
       style: "cancel",
     },
-    { text: "OK", onPress: () => console.log("OK Pressed") },
+    { text: "OK" },
   ]);
 
-SearchScreen = ({navigation}) => {
+SearchScreen = () => {
   const [searchTerm, setTerm] = useState("");
   const [results, setResults] = useState([]);
 
@@ -47,12 +47,13 @@ SearchScreen = ({navigation}) => {
     });
   };
 
-// console.log(navigation);
+  // console.log(navigation);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <SearchBar
         term={searchTerm}
+        placeholder = 'Search by Business Type'
         onTermChange={(newTerm) => setTerm(newTerm)}
         onTermSubmit={() => searchAPI()}
       />
@@ -68,18 +69,15 @@ SearchScreen = ({navigation}) => {
         <ResultsList
           title="Cost Effective"
           results={filterResultsByPrice("$")}
-          navigation={navigation}
         />
         <ResultsList title="Bit Pricier" results={filterResultsByPrice("$$")} />
         <ResultsList
           title="Big Spender"
           results={filterResultsByPrice("$$$")}
-          navigation={navigation}
         />
         <ResultsList
           title="Very Fancy"
           results={filterResultsByPrice("$$$$")}
-          navigation={navigation}
         />
       </ScrollView>
     </View>
